@@ -108,33 +108,7 @@ Key insights from the coefficient analysis:
 - Property age has a negative coefficient.
 - Neighborhood coefficients are interpreted relative to the dropped reference category (Downtown).
 - These results describe relationships learned by the model; they do not establish causation.
-🚀 Getting Started
-Prerequisites
-Install Python 3.9 or later and the required libraries.
-1. Clone the repository
-git clone https://github.com/YOUR-USERNAME/house-price-prediction-system.git
-cd house-price-prediction-system
-2. Install dependencies
-pip install numpy pandas matplotlib seaborn scikit-learn jupyter
-3. Add the dataset
-Download the dataset from Kaggle.
-
-Create a data folder in the project directory and place the CSV file inside it.
-
-Update the dataset-loading cell in the notebook to use your local file path, for example:
-df = pd.read_csv("data/house_price_prediction_data.csv")
-Make sure the filename matches the CSV file you downloaded.
-4. Run the notebook
-jupyter notebook
 Open project-01-house-price-prediction-system-sabrin.ipynb and run the cells in order.
-📁 Repository Structure
-house-price-prediction-system/
-│
-├── project-01-house-price-prediction-system-sabrin.ipynb
-├── data/
-│   └── house_price_prediction_data.csv   # Download separately
-├── README.md
-└── requirements.txt                       # Optional
 👩‍💻 Author
 Sabrin Alam
 Machine Learning & AI BootCamp | Batch: MBL-2
@@ -148,5 +122,4 @@ Machine Learning & AI BootCamp | Batch: MBL-2
 - Hyperparameter tuning with GridSearchCV
 - Residual analysis and coefficient interpretation
 ⭐ If you find this project useful, feel free to explore the notebook and share your feedback.
-
 Project Status: Completed
