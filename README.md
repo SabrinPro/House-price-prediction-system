@@ -1,125 +1,384 @@
-🏡 House Price Prediction System
-An end-to-end Machine Learning project that predicts residential house prices using property features such as living area, bedrooms, bathrooms, neighborhood, waterfront access, and building quality.
+# 🏡 House Price Prediction System
+### An End-to-End Machine Learning Regression Project
 
-This project was completed as a portfolio milestone for the Machine Learning & AI BootCamp (MBL-2).
-📌 Project Overview
-House prices depend on several factors, including property size, location, construction quality, and available amenities. The goal of this project is to explore these factors and build regression models that estimate house prices from property data.
+![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white)
+![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Regression-orange)
+![Scikit Learn](https://img.shields.io/badge/Scikit--Learn-ML-F7931E?logo=scikitlearn&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?logo=pandas)
+![Status](https://img.shields.io/badge/Status-Completed-success)
 
-The workflow covers data inspection, exploratory data analysis (EDA), feature engineering, preprocessing, model training, evaluation, hyperparameter tuning, and residual analysis.
-🎯 Objectives
-- Explore and understand residential house-price data.
-- Identify patterns and relationships between property features and prices.
-- Create meaningful features using domain knowledge.
-- Build a preprocessing pipeline for numerical and categorical data.
+## 📌 Project Overview
+
+The **House Price Prediction System** is an end-to-end Machine Learning project developed to estimate residential property prices based on different property characteristics, including living area, bedrooms, bathrooms, location, building quality, waterfront access, and property age.
+
+Traditional house valuation often depends on manual assessment, which can be time-consuming and subjective. This project explores how Machine Learning can support data-driven property valuation by identifying patterns and relationships between property features and their market prices.
+
+Using Python and Scikit-learn, this project follows a complete Machine Learning workflow, starting from data collection and exploratory data analysis (EDA) to feature engineering, preprocessing, model training, evaluation, hyperparameter tuning, and business insight extraction.
+
+The primary goal is to build and evaluate regression models that can accurately predict house prices while understanding which property characteristics contribute most to their estimated value.
+
+## 🎯 Project Objectives
+
+- Perform Exploratory Data Analysis (EDA) to understand house price distributions and property characteristics.
+- Identify relationships between property features and house prices.
+- Apply feature engineering to create meaningful features.
+- Build a preprocessing pipeline for numerical and categorical variables.
+- Prevent data leakage through proper preprocessing and train-test separation.
 - Train and compare multiple regression models.
-- Tune Ridge Regression using cross-validation.
-- Interpret model coefficients and derive business insights.
-🧰 Technologies & Libraries
-- Python
-- Pandas and NumPy for data manipulation
-- Matplotlib and Seaborn for visualization
-- Scikit-learn for preprocessing, model training, evaluation, and tuning
-- Jupyter Notebook / Kaggle Notebook for development
-📂 Dataset
-The project uses a house-price dataset containing 2,500 records and 13 original columns.
+- Evaluate model performance using MAE, RMSE, and R² Score.
+- Perform hyperparameter tuning using GridSearchCV.
+- Analyze model residuals and identify important house price drivers.
 
-The target variable is price_usd.
+## 🛠️ Technologies & Tools
 
-Main features include:
-Feature	Description
-sqft_living	Living area of the property
-bedrooms	Number of bedrooms
-bathrooms	Number of bathrooms
-lot_size_sqft	Lot size in square feet
-floors	Number of floors
-waterfront	Waterfront indicator
-view_score	Property view score
-condition_rating	Property condition rating
-grade_score	Building quality grade
-yr_built	Year the property was built
-neighborhood	Neighborhood category
-price_usd	House price in USD (target)
+| Technology | Purpose |
+|---|---|
+| Python | Core programming language |
+| NumPy | Numerical operations |
+| Pandas | Data manipulation and analysis |
+| Matplotlib | Data visualization |
+| Seaborn | Statistical visualization |
+| Scikit-learn | Machine Learning and preprocessing |
+| Jupyter Notebook | Development environment |
 
+## 📂 Dataset Description
 
-Dataset source: House Prediction Dataset on Kaggle
-The dataset is not included in this repository. Download it from Kaggle and place the CSV file in the data/ directory, or update the dataset path in the notebook to match your environment.
+The project uses a residential house price dataset named `house_price_prediction_data.csv`.
 
-🔍 Project Workflow
-1. Data Ingestion & Inspection
-- Loaded and inspected the dataset.
-- Checked data types, dataset dimensions, and missing values.
-- The dataset contains 2,500 rows and 13 columns, with no missing values in the inspected columns.
-2. Exploratory Data Analysis (EDA)
-- Examined descriptive statistics and the distribution of house prices.
-- Used a histogram with KDE to understand the price distribution.
-- Compared house prices across neighborhoods using a boxplot.
-Key observations from the analysis:
-- House prices are right-skewed (skewness: 1.69).
-- Median house price: approximately $502,000.
-- Mean house price: approximately $589,322.
-- Lakeside has the highest median house price (approximately $1,201,000).
-- Neighborhood is an important factor in house-price variation.
-3. Feature Engineering
-Created three additional features:
-- property_age: 2024 - yr_built
-- bath_to_bed_ratio: bathrooms / bedrooms
-- is_luxury: 1 when waterfront == 1 or grade_score >= 10; otherwise 0.
-In this dataset, luxury homes represent approximately 12.8% of the records.
-4. Data Preprocessing
-- Defined X as the feature matrix and y as the target (price_usd).
-- Removed property_id and price_usd from the input features.
-- Applied StandardScaler to numerical features.
-- Applied OneHotEncoder to the categorical neighborhood feature.
-- Used an 80/20 train-test split with random_state=42.
-Preprocessing was organized with Scikit-learn's ColumnTransformer and Pipeline.
-5. Model Training
-Four regression models were trained and compared:
-1. Dummy Regressor (Mean Baseline)
-2. Linear Regression
-3. Ridge Regression (alpha=10)
-4. Lasso Regression (alpha=100)
-6. Model Evaluation
-The models were evaluated on the held-out test set using MAE, RMSE, and R².
-Model	MAE (USD)	RMSE (USD)	R²
-Dummy (Mean Baseline)	197,459.064	279,889.862	-0.001
-Linear Regression	21,912.163	27,734.481	0.990
-Ridge (alpha=10)	22,135.191	28,044.705	0.990
-Lasso (alpha=100)	21,991.871	27,853.799	0.990
+The dataset contains:
 
+- **Total Records:** 2,500
+- **Original Features:** 13 columns
+- **Target Variable:** `price_usd`
+- **Missing Values:** 0 in all original columns
 
-Result: Linear Regression achieved the lowest MAE and RMSE among the four initially compared models, with an R² score of approximately 0.990.
-7. Hyperparameter Tuning
-Used GridSearchCV with 5-fold cross-validation to tune Ridge Regression.
+### Dataset Features
 
-Tested alpha values:
+| Feature | Description |
+|---|---|
+| `property_id` | Unique property identifier |
+| `sqft_living` | Living area in square feet |
+| `bedrooms` | Number of bedrooms |
+| `bathrooms` | Number of bathrooms |
+| `lot_size_sqft` | Total lot size in square feet |
+| `floors` | Number of floors |
+| `waterfront` | Indicates waterfront access |
+| `view_score` | Property view rating |
+| `condition_rating` | Property condition rating |
+| `grade_score` | Building quality grade |
+| `yr_built` | Year the property was built |
+| `neighborhood` | Property neighborhood |
+| `price_usd` | House price in USD (Target) |
 
-[0.1, 1.0, 5.0, 10.0, 50.0, 100.0, 500.0]
-- Best alpha: 0.1
-- Best cross-validation RMSE: $29,357.27
-- Tuned Ridge test MAE: $21,911
-- Tuned Ridge test RMSE: $27,734
-- Tuned Ridge test R²: 0.9902
-8. Residual Analysis & Business Insights
-- Compared actual and predicted house prices.
-- Inspected residuals to understand prediction errors.
-- Analyzed the strongest positive and negative model coefficients.
-Key insights from the coefficient analysis:
-- Living area, view score, waterfront access, and building grade have positive coefficients.
-- Property age has a negative coefficient.
-- Neighborhood coefficients are interpreted relative to the dropped reference category (Downtown).
-- These results describe relationships learned by the model; they do not establish causation.
-Open project-01-house-price-prediction-system-sabrin.ipynb and run the cells in order.
-👩‍💻 Author
-Sabrin Alam
-Machine Learning & AI BootCamp | Batch: MBL-2
-📚 What I Learned
-- Exploratory Data Analysis and data interpretation
-- Feature engineering using domain knowledge
-- Numerical scaling and categorical encoding
-- Scikit-learn preprocessing pipelines
-- Regression model training and comparison
-- Model evaluation using MAE, RMSE, and R²
-- Hyperparameter tuning with GridSearchCV
-- Residual analysis and coefficient interpretation
-⭐ If you find this project useful, feel free to explore the notebook and share your feedback.
-Project Status: Completed
+## 🔍 Project Workflow
+
+### 1. Data Ingestion & Initial Inspection
+
+The first step involved loading the dataset using Pandas and performing initial data inspection.
+
+Activities:
+- Loaded the house price dataset.
+- Checked the first five records.
+- Examined dataset dimensions and data types.
+- Checked missing values in all columns.
+
+**Observation:** The dataset contains 2,500 records and 13 original columns, with no missing values.
+
+### 2. Exploratory Data Analysis (EDA)
+
+EDA was performed to understand the distribution of house prices and investigate how location influences property value.
+
+Visualizations:
+- House price distribution using Histogram and KDE.
+- House price comparison across neighborhoods using Boxplots.
+- Summary statistics and skewness analysis.
+
+**Key Findings:**
+
+- House prices are right-skewed, with a skewness value of **1.69**.
+- Median house price: approximately **$502,000**.
+- Mean house price: approximately **$589,322**.
+- Lakeside has the highest median house price at approximately **$1,201,000**.
+- Suburbs and Downtown have comparatively lower median prices.
+
+**Insight:** Property location is an important factor in residential house valuation.
+
+### 3. Feature Engineering
+
+Three new features were created using existing dataset columns to improve the model's ability to understand property characteristics.
+
+**New Features:**
+
+1. `property_age`
+
+   Calculates the age of a property using:
+
+   `property_age = 2024 - yr_built`
+
+2. `bath_to_bed_ratio`
+
+   Calculates the ratio of bathrooms to bedrooms:
+
+   `bath_to_bed_ratio = bathrooms / bedrooms`
+
+3. `is_luxury`
+
+   Creates a binary feature based on luxury property conditions:
+
+   - 1 if waterfront = 1 OR grade_score >= 10
+   - 0 otherwise
+
+**Key Observation:**
+
+Approximately **12.8%** of the properties are classified as luxury homes.
+
+Average house prices:
+
+- Non-luxury properties: approximately $497,392.
+- Luxury properties: approximately $1,213,360.
+
+### 4. Data Preprocessing & Pipeline Construction
+
+A Scikit-learn preprocessing pipeline was constructed to handle numerical and categorical features appropriately.
+
+**Numerical Features:**
+- StandardScaler was applied to standardize numerical variables.
+
+**Categorical Features:**
+- OneHotEncoder was applied to encode neighborhood categories.
+- The first category was dropped to avoid redundant encoded features.
+
+**Preprocessing Tools:**
+- `ColumnTransformer`
+- `StandardScaler`
+- `OneHotEncoder`
+- `Pipeline`
+
+**Train-Test Split:**
+
+- Training Data: 80% (2,000 records)
+- Testing Data: 20% (500 records)
+- Random State: 42
+
+The preprocessing steps were integrated into Scikit-learn pipelines so that transformations are fitted on training data and applied consistently to test data.
+
+### 5. Model Training & Experimentation
+
+Four regression models were trained and evaluated using Scikit-learn pipelines.
+
+**Models Implemented:**
+
+1. **Dummy Regressor (Mean Baseline)**
+
+   Used as a baseline model that predicts the average house price.
+
+2. **Linear Regression**
+
+   Applied Ordinary Least Squares regression to identify linear relationships between property features and house prices.
+
+3. **Ridge Regression**
+
+   Applied L2 regularization to control model complexity and reduce overfitting.
+
+   Initial alpha: 10.0
+
+4. **Lasso Regression**
+
+   Applied L1 regularization to control model complexity and shrink less important coefficients.
+
+   Initial alpha: 100.0
+
+### 6. Model Evaluation & Comparison
+
+All four models were evaluated using three standard regression metrics:
+
+- **MAE (Mean Absolute Error):** Measures the average absolute difference between actual and predicted prices.
+- **RMSE (Root Mean Squared Error):** Measures prediction error while giving more weight to larger errors.
+- **R² Score:** Measures how well the model explains variations in house prices.
+
+**Model Performance:**
+
+| Model | MAE (USD) | RMSE (USD) | R² Score |
+|---|---:|---:|---:|
+| Dummy Regressor | 197,459.064 | 279,889.862 | -0.001 |
+| Linear Regression | 21,912.163 | 27,734.481 | 0.990 |
+| Ridge Regression | 22,135.191 | 28,044.705 | 0.990 |
+| Lasso Regression | 21,991.871 | 27,853.799 | 0.990 |
+
+**Key Findings:**
+
+- The Dummy Regressor performed poorly because it only predicts the mean house price.
+- Linear, Ridge, and Lasso Regression significantly outperformed the baseline model.
+- All three regression models achieved an R² score of approximately 0.99.
+- Linear Regression achieved the lowest MAE and RMSE among the initial model comparisons.
+
+### 7. Hyperparameter Tuning with GridSearchCV
+
+To improve Ridge Regression performance, GridSearchCV was used to identify the optimal regularization parameter (alpha).
+
+**Configuration:**
+
+- Model: Ridge Regression
+- Cross-validation: 5-Fold
+- Scoring Metric: Negative Root Mean Squared Error
+- Search Space: `[0.1, 1.0, 5.0, 10.0, 50.0, 100.0, 500.0]`
+
+**Best Parameters:**
+
+- Best Alpha: **0.1**
+- Best Cross-Validation RMSE: **$29,357.27**
+
+**Tuned Ridge Model Performance on Test Data:**
+
+| Metric | Result |
+|---|---:|
+| MAE | $21,911 |
+| RMSE | $27,734 |
+| R² Score | 0.9902 |
+
+The tuned Ridge model achieved strong predictive performance on the held-out test dataset.
+
+### 8. Residual Analysis & Business Insights
+
+Residual analysis was performed to understand the difference between actual and predicted house prices.
+
+**Visualizations:**
+- Actual vs. Predicted Price Plot.
+- Residual Distribution Plot.
+- Top 5 Positive and Top 5 Negative Feature Coefficients.
+
+**Key Business Insights:**
+
+- Living area (`sqft_living`) is one of the strongest positive price indicators.
+- Waterfront access positively contributes to estimated house prices.
+- Better building quality and higher view scores are associated with higher predicted prices.
+- Property age has a negative coefficient, indicating that older properties tend to have lower estimated values when other features are held constant.
+- Neighborhood coefficients show differences relative to Downtown, the reference category.
+
+**Top Positive Price Drivers:**
+
+- Living Area
+- View Score
+- Waterfront
+- Building Grade
+- Bathrooms
+
+**Top Negative Price Drivers:**
+
+- Suburbs (relative to Downtown)
+- Northside (relative to Downtown)
+- Lakeside (relative to Downtown)
+- Property Age
+- Number of Floors
+
+These findings help explain how different property characteristics contribute to the model's predictions. Model coefficients indicate learned associations, not necessarily causal effects.
+
+## 📊 Final Project Results
+
+The project successfully demonstrates a complete Machine Learning regression workflow.
+
+| Project Component | Status |
+|---|---|
+| Data Inspection | Completed |
+| Exploratory Data Analysis | Completed |
+| Feature Engineering | Completed |
+| Data Preprocessing | Completed |
+| Model Training | Completed |
+| Model Comparison | Completed |
+| Hyperparameter Tuning | Completed |
+| Residual Analysis | Completed |
+| Business Insights | Completed |
+
+**Final Result:** The tuned Ridge Regression model achieved an R² score of **0.9902**, with a test RMSE of approximately **$27,734**.
+
+## 🚀 How to Run This Project
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/YOUR-USERNAME/house-price-prediction-system.git
+```
+
+### 2. Navigate to the Project Directory
+
+```bash
+cd house-price-prediction-system
+```
+
+### 3. Install Required Libraries
+
+```bash
+pip install numpy pandas matplotlib seaborn scikit-learn jupyter
+```
+
+### 4. Download the Dataset
+
+Download `house_price_prediction_data.csv` from the original dataset source used in the notebook.
+
+Create a `data` folder and place the CSV file inside it.
+
+### 5. Update the Dataset Path
+
+Update the dataset-loading cell in the notebook:
+
+```python
+df = pd.read_csv("data/house_price_prediction_data.csv")
+```
+
+Make sure the filename matches your downloaded dataset.
+
+### 6. Run the Jupyter Notebook
+
+```bash
+jupyter notebook
+```
+
+Open `project-01-house-price-prediction-system-sabrin.ipynb` and execute the cells sequentially.
+
+## 📁 Repository Structure
+
+```text
+house-price-prediction-system/
+│
+├── project-01-house-price-prediction-system-sabrin.ipynb
+│
+├── data/
+│   └── house_price_prediction_data.csv
+│
+├── README.md
+│
+└── requirements.txt
+```
+
+*Note: The dataset is not included in this repository.*
+
+## 📚 Key Learning Outcomes
+
+Through this project, I gained practical experience in:
+
+- Understanding and analyzing real-world-style structured datasets.
+- Performing Exploratory Data Analysis.
+- Creating meaningful features through feature engineering.
+- Handling numerical and categorical data.
+- Building Scikit-learn preprocessing pipelines.
+- Training and comparing regression algorithms.
+- Evaluating models using MAE, RMSE, and R².
+- Performing hyperparameter optimization with GridSearchCV.
+- Analyzing residuals and interpreting model coefficients.
+- Translating Machine Learning results into business insights.
+
+## 👩‍💻 Author
+
+**Sabrin Alam**
+
+Machine Learning & AI BootCamp  
+Batch: MBL-2
+
+**Project:** House Price Prediction System  
+**Date:** October 31, 2026
+
+---
+
+⭐ If you find this project interesting, feel free to explore the notebook and share your feedback!
+
+**Thank you for visiting my project!**
